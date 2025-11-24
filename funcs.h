@@ -1,9 +1,14 @@
 #ifndef FUNCS_H
 #define FUNCS_H
 
-void menu_item_1(void);
-void menu_item_2(void);
-void menu_item_3(void);
-void menu_item_4(void);
+void scientific_menu(void);
+void eee_menu(void);
+
+int get_user_input_sub(int max_item);
+
+//for scientific tool functions//
+float hzTorad(float hz);
+float dbmToMw(float dbm);
+
 
 #endif

@@ -11,7 +11,7 @@
 /* Prototypes mirroring the C++ version */
 static void main_menu(void);            /* runs in the main loop */
 static void print_main_menu(void);      /* output the main menu description */
-static int  get_user_input(void);       /* get a valid integer menu choice */
+static int  get_user_input_main(void);       /* get a valid integer menu choice */
 static void select_menu_item(int input);/* run code based on user's choice */
 static void go_back_to_main(void);      /* wait for 'b'/'B' to continue */
 static int  is_integer(const char *s);  /* validate integer string */
@@ -30,14 +30,14 @@ static void main_menu(void)
 {
     print_main_menu();
     {
-        int input = get_user_input();
+        int input = get_user_input_main();
         select_menu_item(input);
     }
 }
 
-static int get_user_input(void)
+static int get_user_input_main(void)
 {
-    enum { MENU_ITEMS = 5 };   /* 1..4 = items, 5 = Exit */
+    enum { MENU_ITEMS = 3 };   /* 1..2 = items, 3 = Exit */
     char buf[128];
     int valid_input = 0;
     int value = 0;
@@ -74,22 +74,12 @@ static void select_menu_item(int input)
 {
     switch (input) {
         case 1:
-            menu_item_1();
-            go_back_to_main();
+            scientific_tools_menu();
             break;
         case 2:
-            menu_item_2();
-            go_back_to_main();
+            eee_tools_menu();
             break;
         case 3:
-            menu_item_3();
-            go_back_to_main();
-            break;
-        case 4:
-            menu_item_4();
-            go_back_to_main();
-            break;
-        default:
             printf("Bye!\n");
             exit(0);
     }
@@ -100,11 +90,9 @@ static void print_main_menu(void)
     printf("\n----------- Main menu -----------\n");
     printf("\n"
            "\t\t\t\t\t\t\n"
-           "\t1. Menu item 1\t\t\n"
-           "\t2. Menu item 2\t\t\n"
-           "\t3. Menu item 3\t\t\n"
-           "\t4. Menu item 4\t\t\n"
-           "\t5. Exit\t\t\t\t\n"
+           "\t1. Scientific & Mathematics Tools\n"
+           "\t2. Electronic & Electrical Engineering Tools\n"
+           "\t3. Exit\n"
            "\t\t\t\t\t\t\n");
     printf("---------------------------------------------\n");
 }
