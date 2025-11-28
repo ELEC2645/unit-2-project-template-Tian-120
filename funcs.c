@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <stdlib.h>
 #include "funcs.h"
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 int get_user_input_sub(int max_items)
 {
@@ -35,26 +40,154 @@ int get_user_input_sub(int max_items)
     return value;
 }
 
-void menu_item_1(void) {
-    printf("\n>> Menu 1\n");
-    printf("\nSome code here does something useful\n");
-    /* you can call a function from here that handles menu 1 */
+void scientific_menu(void)
+{
+    int choice;
+
+    printf("\n----------- Scientific & Mathematics Tools -----------\n");
+    printf("\n"
+           "\t1. Unit Conversion\n"
+           "\t2. Basic Statistics\n"
+           "\t3. Back to Main Menu\n"
+           "\n");
+    printf("------------------------------------------------------\n");
+
+    choice = get_user_input_sub(3);
+
+    switch(choice)
+    {
+        case 1:
+            unit_conversion();
+            break;
+        case 2:
+            basic_statistics();
+            break;
+        case 3:
+            return;
+    }
 }
 
-void menu_item_2(void) {
-    printf("\n>> Menu 2\n");
-    printf("\nSome code here does something useful\n");
-    /* you can call a function from here that handles menu 2 */
+void unit_conversion(void)
+{
+    int choice;
+    float input, result;
+
+    printf("\n----------- Unit Conversion -----------\n");
+    printf("\n"
+           "\t1. Hz to rad/s\n"
+           "\t2. rad/s to Hz\n"
+           "\t3. dBm to mW\n"
+           "\t4. mW to dBm\n"
+           "\t5. Back\n"
+           "\n");
+    printf("---------------------------------------------\n");
+
+    choice = get_user_input_sub(5);
+
+    switch(choice)
+    {
+        case 1:
+            printf("\nEnter frequency in Hz: ");
+            scanf("%f", &input);
+            result = hzToRad(input);
+            printf("Result: %.4f rad/s\n", result);
+            break;
+
+        case 2:
+            printf("\nEnter angular frequency (rad/s): ");
+            scanf("%f", &input);
+            result = radToHz(input);
+            printf("Result: %.4f Hz\n", result);
+            break;
+
+        case 3:
+            printf("\nEnter power in dBm: ");
+            scanf("%f", &input);
+            result = dbmToMw(input);
+            printf("Result: %.4f mW\n", result);
+            break;
+
+        case 4:
+            printf("\nEnter power in mW: ");
+            scanf("%f", &input);
+            result = mwToDbm(input);
+            printf("Result: %.4f dBm\n", result);
+            break;
+
+        case 5:
+            return;
+    }
 }
 
-void menu_item_3(void) {
-    printf("\n>> Menu 3\n");
-    printf("\nSome code here does something useful\n");
-    /* you can call a function from here that handles menu 3 */
+
+float hzToRad(float hz)
+{
+    return hz * 2 * M_PI;
 }
 
-void menu_item_4(void) {
-    printf("\n>> Menu 4\n");
-    printf("\nSome code here does something useful\n");
-    /* you can call a function from here that handles menu 4 */
+float radToHz(float rad)
+{
+    return rad / (2 * M_PI);
+}
+
+float dbmToMw(float dbm)
+{
+    return pow(10, dbm / 10);
+}
+
+float mwToDbm(float mw)
+{
+    return 10 * log10(mw);
+}
+
+void basic_statistics(void)
+{
+    int n;
+    float value;
+    float data[20];
+    float sum = 0.0f;
+    float min = 0.0f;
+    float max = 0.0f;
+    int i;
+
+    printf("\n----------- Basic Statistics -----------\n");
+    printf("\nEnter number of data points (1–20): ");
+
+    if (scanf("%d", &n) != 1 || n < 1 || n > 20) {
+        printf("Invalid number of data points.\n");
+        return;
+    }
+
+    printf("\nPlease enter %d values:\n", n);
+
+    for (i = 0; i < n; i++) {
+        printf("  Value %d: ", i + 1);
+        if (scanf("%f", &value) != 1) {
+            printf("Invalid input. Stopping.\n");
+            return;
+        }
+        data[i] = value;
+        sum += value;
+
+        if (i == 0 || value < min) {
+            min = value;
+        }
+        if (i == 0 || value > max) {
+            max = value;
+        }
+    }
+
+    float mean = sum / n;
+
+    printf("\nResults:\n");
+    printf("  Count: %d\n", n);
+    printf("  Min  : %.4f\n", min);
+    printf("  Max  : %.4f\n", max);
+    printf("  Mean : %.4f\n", mean);
+    printf("---------------------------------------------\n");
+}
+
+void eee_menu(void)
+{
+    printf("\nEEE Tools\n");
 }

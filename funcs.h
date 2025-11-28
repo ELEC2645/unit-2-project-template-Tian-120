@@ -4,11 +4,17 @@
 void scientific_menu(void);
 void eee_menu(void);
 
-int get_user_input_sub(int max_item);
+int get_user_input_sub(int max_items);
 
 //for scientific tool functions//
-float hzTorad(float hz);
+void unit_conversion(void);
+
+float hzToRad(float hz);
+float radToHz(float rad);
 float dbmToMw(float dbm);
+float mwToDbm(float mw);
+
+void basic_statistics(void);
 
 
 #endif

@@ -74,10 +74,10 @@ static void select_menu_item(int input)
 {
     switch (input) {
         case 1:
-            scientific_tools_menu();
+            scientific_menu();
             break;
         case 2:
-            eee_tools_menu();
+            eee_menu();
             break;
         case 3:
             printf("Bye!\n");
