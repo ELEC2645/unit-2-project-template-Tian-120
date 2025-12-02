@@ -151,7 +151,7 @@ void basic_statistics(void)
     int i;
 
     printf("\n----------- Basic Statistics -----------\n");
-    printf("\nEnter number of data points (1–20): ");
+    printf("\nEnter number of data points (1-20): ");
 
     if (scanf("%d", &n) != 1 || n < 1 || n > 20) {
         printf("Invalid number of data points.\n");
@@ -189,5 +189,87 @@ void basic_statistics(void)
 
 void eee_menu(void)
 {
-    printf("\nEEE Tools\n");
+    int choice;
+
+    printf("\n----------- Electronic & Electrical Engineering Tools -----------\n");
+    printf("\n"
+           "\t1. RC Filter Calculator\n"
+           "\t2. Resistor Network Calculator\n"
+           "\t3. Back to Main Menu\n"
+           "\n");
+    printf("-----------------------------------------------------------------\n");
+
+    choice = get_user_input_sub(3);
+
+    switch(choice)
+    {
+        case 1:
+            rc_filter_tool();
+            break;
+
+        case 2:
+            resistor_network_tool();
+            break;
+
+        case 3:
+            return;
+    }
+}
+
+void rc_filter_tool(void)
+{
+    float R, C, fc;
+
+    printf("\n----------- RC Filter Calculator -----------\n");
+
+    printf("\nEnter resistance R (ohms): ");
+    scanf("%f", &R);
+
+    printf("Enter capacitance C (farads): ");
+    scanf("%f", &C);
+
+    fc = 1.0f / (2 * M_PI * R * C);
+
+    printf("\nCutoff frequency: %.4f Hz\n", fc);
+    printf("---------------------------------------------\n");
+}
+
+void resistor_network_tool(void)
+{
+    int choice;
+    float R1, R2, result;
+
+    printf("\n----------- Resistor Network Calculator -----------\n");
+    printf("\n"
+           "\t1. Series Connection\n"
+           "\t2. Parallel Connection\n"
+           "\t3. Back\n"
+           "\n");
+    printf("---------------------------------------------------\n");
+
+    choice = get_user_input_sub(3);
+
+    switch(choice)
+    {
+        case 1:
+            printf("\nEnter R1: ");
+            scanf("%f", &R1);
+            printf("Enter R2: ");
+            scanf("%f", &R2);
+            result = R1 + R2;
+            printf("\nSeries Result: %.4f ohms\n", result);
+            break;
+
+        case 2:
+            printf("\nEnter R1: ");
+            scanf("%f", &R1);
+            printf("Enter R2: ");
+            scanf("%f", &R2);
+            result = 1.0f / (1.0f/R1 + 1.0f/R2);
+            printf("\nParallel Result: %.4f ohms\n", result);
+            break;
+
+        case 3:
+            return;
+    }
 }

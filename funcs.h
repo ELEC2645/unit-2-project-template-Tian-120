@@ -16,5 +16,9 @@ float mwToDbm(float mw);
 
 void basic_statistics(void);
 
+void eee_menu(void);
+void rc_filter_tool(void);
+void resistor_network_tool(void);
+
 
 #endif
