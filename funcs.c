@@ -189,6 +189,10 @@ void basic_statistics(void)
 
 void eee_menu(void)
 {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF) {}
+
+    
     int choice;
 
     printf("\n----------- Electronic & Electrical Engineering Tools -----------\n");
